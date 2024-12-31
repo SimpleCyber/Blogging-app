@@ -1,0 +1,114 @@
+<!-- templates/admin_login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <style>
+    a{
+        text-decoration: none;
+        color: aliceblue;
+        background-color:red;
+    }
+    a:hover{
+        color: aliceblue;
+        background-color: rgb(252, 109, 109);
+    }
+
+    .logout{
+        background-color: red;
+    }
+
+    .logout:hover{
+        background-color: rgb(252, 109, 109);
+        color: white;
+    }
+
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content: left;
+        margin: 3rem;
+        margin-left: 6rem;
+    }
+
+
+    form{
+        border: 2px solid aliceblue;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        max-width: 25rem;
+    }
+
+    .btn{
+        display: flex;
+        gap: 2rem;
+    }
+
+    button {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    max-width: 7rem;
+    margin-bottom: .5rem;
+}
+
+button:hover {
+    background-color: #29b941;
+}
+
+#username, .pass{
+    width: 15rem;
+}
+
+*{
+    background-color:rgb(34, 34, 34); 
+    color: aliceblue;
+}
+
+input{
+    all: unset;
+    background-color: rgb(66, 66, 66);
+    height: 2rem;
+    border-radius: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: large;
+    margin-top: .3rem;
+    padding:.5rem;
+    width: 20rem;
+    
+}
+
+  </style>
+  
+</head>
+<body>
+  <h2>Admin Login</h2>
+  <form action="/admin" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+    
+    <label for="password">Password:</label>
+    <input type="password" class="pass" id="password" name="password" required><br><br>
+    <div class="btn">
+    <button type="submit">Login</button>
+    <button class="logout"><a href="/logout">Logout</a></button>
+</div>
+  </form>
+
+  
+  {% if error %}
+    <p style="color:red;">{{ error }}</p>
+  {% endif %}
+</body>
+</html>

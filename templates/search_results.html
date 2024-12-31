@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Results</title>
+  </head>
+  <body>
+    <h1>Search Results for "{{ query }}"</h1>
+    {% if posts %}
+    <ul>
+        {% for post in posts %}
+      <li>
+        <h2>{{ post.title}}</h2>
+        <p>{{ post.content}}</p>
+        {% if post.image %}
+        <img
+          src="{{url_for('static', filename='uploads/' + post.image.replace('\\','/').split('/')[-1])}}"
+          alt="Post Image"
+          width="200"
+        />
+        {% endif %}
+
+        <p>
+          Tags: {% for tag in post.tags %}
+          <span class="tag">{{tag}}</span>
+          {% endfor %}
+        </p>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% endif %}
+    <a href="{{ url_for('add_post')}}">Add Post</a>
+  </body>
+</html>

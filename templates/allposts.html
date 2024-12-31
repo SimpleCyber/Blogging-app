@@ -1,0 +1,128 @@
+
+
+{% block css %}
+<style>
+    
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.blogs {
+  display: flex;
+  flex-direction: row;
+  gap: 4%;
+  border: 5px;
+  flex-wrap: wrap;
+}
+.blog1{
+    display: flex;
+    flex-direction: column;
+}
+
+.imp{
+    display: flex;
+    gap: 1rem;
+    justify-content: right;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+
+
+.form-btn {
+    background: #465202;
+    color: white;
+    font-weight: bold;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+
+.btn-delete {
+    background: #e31010;
+    width: 4rem;
+    height: 2rem;
+}
+.form-btn:hover {
+    background: #444;
+    
+}
+
+</style>
+{% endblock css %}
+
+
+{% extends "base.html" %}
+{% block main %}
+<main>
+
+
+    <!-- Other Posts -->
+    <h1 class="heading">All Posts</h1> 
+    <div class="blogs">
+        
+        {% for post in posts %}
+        <div class="blog1" 
+             data-title="{{ post.title }}" 
+             data-summary="{{ post.summary }}" 
+             data-content="{{ post.content }}" 
+             data-image="{{ url_for('static', filename='uploads/' + post.image.replace('\\', '/').split('/')[-1]) }}">
+            <div class="blog_image">
+                <a href="#">
+                    <img src="{{ url_for('static', filename='uploads/' + post.image.replace('\\', '/').split('/')[-1]) }}" alt="Post Image" />
+                </a>
+            </div>
+            <div class="blog_details">
+                <div class="header">{{ post.title }}</div>
+                <div class="details">{{ post.summary }}</div>
+            </div>
+
+            <div class="imp">
+                <a class="" href="{{ url_for('edit_post', post_id =post.id)}}">
+                    <button class="btn-edit form-btn">Edit</button>
+                </a>
+    
+                <a href="{{ url_for('delete_post', post_id =post.id)}}">
+                    <button class="btn btn-delete form-btn" >Delete</button>
+                 </a>    
+            </div>
+
+            
+
+        </div>
+        {% endfor %}
+    </div>
+
+</main>
+{% endblock main %}
+
+
+{% block js %}
+<script>
+    // JavaScript to update the recent post dynamically
+    document.querySelectorAll('.blog1').forEach(blog => {
+        blog.addEventListener('click', () => {
+            // Get post data from the clicked blog using data-* attributes
+            const title = blog.getAttribute('data-title');
+            const summary = blog.getAttribute('data-summary');
+            const content = blog.getAttribute('data-content');
+            const image = blog.getAttribute('data-image');
+
+            // Update the recent post section dynamically with clicked post data
+            document.getElementById('recent-post-title').textContent = title;
+            document.getElementById('recent-post-summary').textContent = summary;
+            document.getElementById('recent-post-details').textContent = content;
+            document.getElementById('recent-post-image').setAttribute('src', image);
+        });
+    });
+</script>
+{% endblock js %}
