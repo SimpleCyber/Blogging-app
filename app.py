@@ -11,7 +11,8 @@ app.secret_key = os.urandom(24)  # Used for session management
 
 
 # initialise firebase 🔥🔥🔥🔥
-cred = credentials.Certificate("./firebase-credentials.json")
+firebase_cred =  os.getenv("FIREBASE_CRED")
+cred = credentials.Certificate(firebase_cred)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
