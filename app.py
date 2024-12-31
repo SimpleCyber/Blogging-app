@@ -5,13 +5,30 @@ from firebase_admin import credentials, firestore
 from dotenv import load_dotenv
 import markdown
 
-
+load_dotenv()
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # Used for session management
-
+app.secret_key = os.urandom(24)  
 
 # initialise firebase 🔥🔥🔥🔥
-cred = credentials.Certificate("./firebase-credentials.json")
+firebase_credentials = {
+    "type": "service_account",
+    "project_id": os.getenv("FIREBASE_PROJECT_ID"),
+    "private_key_id": os.getenv("FIREBASE_PRIVATE_KEY_ID"),
+    "private_key": os.getenv("FIREBASE_PRIVATE_KEY"),
+    "client_email": os.getenv("FIREBASE_CLIENT_EMAIL"),
+    "client_id": "107043018355332316900",  # You can also put this in .env if needed
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2ikai%40blog-6ee63.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+}
+
+
+
+firebase_credentials["private_key"] = firebase_credentials["private_key"].replace("\\n", "\n")
+
+cred = credentials.Certificate(firebase_credentials)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -33,6 +50,7 @@ def base():
 
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+
 
 def allowed_file(filename):
     """Check if the file has the valid extension"""
