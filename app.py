@@ -73,6 +73,7 @@ def admin():
         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
             session.permanent = True  # Ensure session is permanent
             session["admin_logged_in"] = True  # Set admin session
+            print(f"Admin logged in: {session}")
             return redirect(url_for("home"))  # Redirect to home or admin page
         else:
             error = "Invalid credentials, please try again."
@@ -183,18 +184,17 @@ def add_post():
 #delete a post
 @app.route("/delete/<string:post_id>")
 def delete_post(post_id):
-
+    print(f"Session before delete: {session}")
     if not is_admin():
         return redirect(url_for("admin"))
-    
 
-    # delete from firestore
     try:
         db.collection("posts").document(post_id).delete()
-        return redirect(url_for("home"))
+        print("Post deleted successfully")
+        return redirect(url_for("allposts"))
     except Exception as e:
         print(f"Error deleting post :{e}")
-        return redirect(url_for("home"))
+        return redirect(url_for("allposts"))
         
 # update a post
 @app.route("/edit/<post_id>", methods=["GET","POST"])
