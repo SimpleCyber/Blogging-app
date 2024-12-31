@@ -5,6 +5,7 @@ from firebase_admin import credentials, firestore
 from dotenv import load_dotenv
 import markdown
 from datetime import timedelta
+import uuid
 
 load_dotenv()
 app = Flask(__name__)
@@ -72,10 +73,23 @@ def admin():
         password = request.form["password"]
 
         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
-            session.permanent = True  # Ensure session is permanent
-            session["admin_logged_in"] = True  # Set admin session
-            print(f"Admin logged in: {session}")
-            return redirect(url_for("home"))  # Redirect to home or admin page
+            # Generate a unique session ID
+            session_id = str(uuid.uuid4())
+
+            # Store session data in Firestore
+            db.collection("sessions").document(session_id).set({
+                "username": username,
+                "admin_logged_in": True,
+                "timestamp": firestore.SERVER_TIMESTAMP
+            })
+
+            # Store the session ID in Flask session
+            session.permanent = True
+            session["session_id"] = session_id  # Store session ID
+
+            return redirect(url_for("home"))
+        
+
         else:
             error = "Invalid credentials, please try again."
             return render_template("admin.html", error=error)
@@ -87,14 +101,29 @@ def admin():
 # Logout route to destroy session
 @app.route("/logout")
 def logout():
-    session.pop("admin_logged_in", None)
+    session_id = session.get("session_id")
+
+    if session_id:
+        # Remove the session from Firestore
+        db.collection("sessions").document(session_id).delete()
+
+    # Clear the session in Flask
+    session.pop("session_id", None)
+
     return redirect(url_for("home"))
 
 
 
 # Admin access check
 def is_admin():
-    return session.get("admin_logged_in", False)
+    session_id = session.get("session_id")
+    
+    if session_id:
+        session_doc = db.collection("sessions").document(session_id).get()
+        if session_doc.exists:
+            return session_doc.to_dict().get("admin_logged_in", False)
+
+    return False
 
 
 @app.route("/allposts")
