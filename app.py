@@ -4,10 +4,17 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from dotenv import load_dotenv
 import markdown
+from datetime import timedelta
 
 load_dotenv()
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  
+
+
+app.config['SECRET_KEY'] = os.urandom(24) 
+app.permanent_session_lifetime = timedelta(minutes=30)  
+
+
+
 
 # initialise firebase 🔥🔥🔥🔥
 firebase_credentials = {
@@ -23,8 +30,6 @@ firebase_credentials = {
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2ikai%40blog-6ee63.iam.gserviceaccount.com",
     "universe_domain": "googleapis.com"
 }
-
-
 
 firebase_credentials["private_key"] = firebase_credentials["private_key"].replace("\\n", "\n")
 
@@ -50,6 +55,8 @@ def base():
 
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+if not ADMIN_USERNAME or not ADMIN_PASSWORD:
+    raise ValueError("ADMIN_USERNAME and ADMIN_PASSWORD must be set in the environment variables.")
 
 
 def allowed_file(filename):
@@ -64,6 +71,7 @@ def admin():
         password = request.form["password"]
 
         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+            session.permanent = True  # Ensure session is permanent
             session["admin_logged_in"] = True  # Set admin session
             return redirect(url_for("home"))  # Redirect to home or admin page
         else:
@@ -71,6 +79,7 @@ def admin():
             return render_template("admin.html", error=error)
 
     return render_template("admin.html")
+
 
 
 # Logout route to destroy session
