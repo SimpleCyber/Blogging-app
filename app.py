@@ -6,12 +6,27 @@ from dotenv import load_dotenv
 import markdown
 from datetime import timedelta
 
+import redis
+from flask_session import Session
+
+
+
 load_dotenv()
 app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = os.urandom(24) 
 app.permanent_session_lifetime = timedelta(minutes=30)  
+
+
+app.config['SESSION_TYPE'] = 'redis'  # Use Redis for session storage
+app.config['SESSION_PERMANENT'] = True
+app.config['SESSION_USE_SIGNER'] = True
+app.config['SESSION_KEY_PREFIX'] = 'your_session_prefix:'
+app.config['SESSION_REDIS'] = redis.StrictRedis(host='localhost', port=6379)  # Use Redis URL in production
+
+Session(app)
+
 
 
 
@@ -71,10 +86,10 @@ def admin():
         password = request.form["password"]
 
         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
-            session.permanent = True  # Ensure session is permanent
-            session["admin_logged_in"] = True  # Set admin session
+            session.permanent = True  
+            session["admin_logged_in"] = True 
             print(f"Admin logged in: {session}")
-            return redirect(url_for("home"))  # Redirect to home or admin page
+            return redirect(url_for("home"))  
         else:
             error = "Invalid credentials, please try again."
             return render_template("admin.html", error=error)

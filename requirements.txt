@@ -2,3 +2,5 @@ Flask
 firebase-admin
 python-dotenv
 markdown
+redis
+flask-session
