@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: django-app
-    env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: python -m gunicorn usersproject.asgi:application -k uvicorn.workers.UvicornWorker

@@ -1,7 +1,5 @@
-django
+Django
 python-dotenv
 firebase-admin
 Markdown
 gunicorn
-pytz
-sqlparse
