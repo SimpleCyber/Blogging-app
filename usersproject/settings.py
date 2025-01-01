@@ -125,10 +125,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR ,"static"),
-]
+STATIC_URL = '/static/'
 
+# Define the absolute path for collected static files
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Additional locations of static files
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 
 ALLOWED_EXTENSIONS =[
