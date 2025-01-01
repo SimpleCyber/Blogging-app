@@ -1,0 +1,101 @@
+
+{% extends "base.html" %}
+
+
+{% block css %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/addPost.css' %}" />
+
+<link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+
+    <style>
+        
+        main {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: center;
+        }
+
+        .blogs {
+        display: flex;
+        flex-direction: row;
+        gap: 4%;
+        border: 5px;
+        flex-wrap: wrap;
+        }
+        .blog1{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .imp{
+            display: flex;
+            gap: 1rem;
+            justify-content: right;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+
+
+        .form-btn {
+            background: #465202;
+            color: white;
+            font-weight: bold;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            align-self: flex-start;
+        }
+
+
+        .btn-delete {
+            background: #e31010;
+            width: 4rem;
+            height: 2rem;
+        }
+        .form-btn:hover {
+            background: #444;
+            
+        }
+
+    </style>
+{% endblock css %}
+
+
+{% block main %}
+<main>
+    <h1 class="heading">Search Results</h1> 
+    <h2>Search Results for "{{ query }}"</h2>
+    <div class="blogs">
+    {% if posts %}
+        {% for post in posts %}
+        <div class="blog1" 
+             data-title="{{ post.title }}" 
+             data-summary="{{ post.summary }}" 
+             data-content="{{ post.conten|safe }}" 
+             data-image="data:{{ post.content_type }};base64,{{ post.image }}">
+            <div class="blog_image">
+                <a href="#">
+                    <img src="data:{{ post.content_type }};base64,{{ post.image }}" alt="Post Image" />
+                </a>
+            </div>
+            <div class="blog_details">
+                <div class="header">{{ post.title }}</div>
+                <div class="details">{{ post.summary }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>No posts available.</p>
+    {% endif %}
+
+</main>
+{% endblock main %}

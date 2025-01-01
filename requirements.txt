@@ -1,0 +1,7 @@
+django
+python-dotenv
+firebase-admin
+Markdown
+gunicorn
+pytz
+sqlparse

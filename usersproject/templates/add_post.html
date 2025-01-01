@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="static/css/addPost.css"/>
+
+<style>
+  @media (max-width: 767px) {
+  .post-form {
+    flex-direction: column;
+  }
+}
+</style>
+{% endblock css %}
+
+{% block main %}
+<h1>Add new posts</h1>
+<div class="form-container">
+    <form method="post" action="/add_post" id="formadd" class="post-form" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="details">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" id="title" name="title" class="form-input" required />
+            <br />
+            <br />
+
+            <label for="summary" class="form-label">Summary:</label>
+            <textarea name="summary" id="summary" class="form-textarea" required></textarea>
+            <br />
+            <br />
+
+            <label for="content" class="form-label">Content:</label>
+            <textarea name="content" id="content" class="form-textarea" required></textarea>
+            <br />
+            <br />
+        </div>
+
+        <div class="images">
+
+            <label for="image" class="form-label">Upload Image :</label>
+            <input type="file" id="image" name="image" class="form-input" accept="image/*" onchange="displayImage(event)">
+            <br><br>
+
+            <!-- Display selected image -->
+            <div id="image-preview-container" style="display: none;">
+                <h4>Selected Image:</h4>
+                <img id="image-preview" src="" alt="Image Preview" style="max-width: 300px; height: auto;"/>
+            </div>
+
+            <label for="tags" class="form-label">Tags (comma-separated)</label>
+            <input type="text" id="tags" name="tags" class="form-input" />
+            <br>
+            <br>
+
+            <button type="submit" class="form-btn">Add Post</button>
+        </div>
+    </form>
+
+   
+</div>
+
+{% endblock main %}
+
+
+{% block js %}
+<script>
+    // JavaScript function to display the chosen image
+    function displayImage(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = function() {
+        const imagePreview = document.getElementById('image-preview');
+        const imagePreviewContainer = document.getElementById('image-preview-container');
+        
+        imagePreview.src = reader.result;
+        imagePreviewContainer.style.display = 'block'; 
+      }
+  
+      if (file) {
+        reader.readAsDataURL(file); 
+      }
+    }
+</script>
+{% endblock js %}
