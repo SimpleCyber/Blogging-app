@@ -24,10 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-lm3i7q5ca#r+yzj08ln6)d3gpme!2zpj^e@=)ytvd12mjp6n6-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = [
+    "https://bloggersatyam.onrender.com",
+    "bloggersatyam.onrender.com",  # Without the 'https://' part
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -138,4 +140,9 @@ STATICFILES_DIRS = [
 
 ALLOWED_EXTENSIONS =[
     "jpeg","webp","png","jpg"
+]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://bloggersatyam.onrender.com",
 ]
