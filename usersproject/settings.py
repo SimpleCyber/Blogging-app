@@ -146,3 +146,4 @@ ALLOWED_EXTENSIONS =[
 CSRF_TRUSTED_ORIGINS = [
     "https://bloggersatyam.onrender.com",
 ]
+

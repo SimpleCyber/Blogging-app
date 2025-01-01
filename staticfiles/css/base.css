@@ -1,0 +1,460 @@
+* {
+  background-color: rgb(34, 34, 34);
+}
+
+::-webkit-scrollbar {
+  display: none; /* Completely hide the scrollbar */
+}
+
+body {
+  color: aliceblue;
+}
+a {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+a:hover {
+  color: rgb(128, 242, 128);
+}
+
+header {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: right;
+  align-items: center;
+  box-shadow: 0px 3px 0px 0px rgba(255, 251, 251, 0.1);
+}
+header:hover {
+  color: linear-gradient(to left, lightgreen, green);
+}
+
+hr {
+  color: white;
+}
+
+
+
+span {
+  color: rgb(82, 249, 79);
+}
+
+
+.name span{
+    font-size: 2rem;
+}
+
+
+
+form{
+    margin-right: 30rem;
+}
+
+
+/* Reset initial CSS */
+input {
+    all: unset; /* Resets all styles */
+    box-sizing: border-box; /* Ensures padding/border does not affect width/height */
+}
+
+/* Improved styles */
+input {
+    width: 30rem;
+    height: 2.5rem; 
+    padding: 0.5rem; 
+    border-radius: 0.5rem; 
+    border: 3px solid #414141;
+    font-size: 1rem; 
+    font-family: 'Arial', sans-serif; 
+    outline: none; 
+    transition: all 0.3s ease-in-out; 
+    margin-top:.5rem
+}
+
+input:focus {
+    border-color: #4caf50; 
+}
+
+input::placeholder {
+    color: #888; 
+    font-style: italic;
+}
+
+
+.btn {
+    margin-top:.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem; 
+    height: 2.5rem;
+    border: none; 
+    border-radius: 50%;
+    color: aliceblue; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+.btn:hover, .fas:hover {
+    background-color: #45a049; 
+}
+
+.btn:focus, .fas:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5); /* Subtle green glow */
+}
+
+.btn i {
+    font-size: 1.5rem;
+}
+
+
+
+
+
+.photo img {
+  width: 19rem;
+  height: 11rem;
+}
+
+.post img {
+  border: 0px;
+  border-radius: 0.51rem;
+}
+
+.post_details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.41rem;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+  font-size: larger;
+  margin-top: 0.61rem;
+}
+
+
+
+main {
+  display: grid;
+  gap: 1rem;
+  padding: 0.5rem;
+  grid-template-columns: 1fr 1fr 1fr 0.5fr;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+
+
+.post {
+  grid-row-start: 1;
+  grid-row-end: 5;
+
+  grid-column-start: 1;
+  grid-column-end: 3;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+.postheader{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+
+
+.blogs {
+  grid-row-start: 1;
+  grid-row-end: 5;
+
+  grid-column-start: 3;
+  grid-column-end: 5;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  border: 5px;
+  max-width: 100%;
+  width: auto;
+  margin-top: -1rem;
+  padding-left: 1rem;
+}
+
+
+
+
+
+.header {
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(82, 249, 79);
+}
+
+.blogs .heading {
+  margin-bottom: 4px;
+}
+
+.blog1 {
+  display: flex;
+}
+
+.details {
+  font-size: small;
+  margin-top: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.interactions {
+  display: flex;
+  gap: 0.81rem;
+  font-size: larger;
+  color: rgb(132, 132, 132);
+  margin-bottom: 0.3rem;
+}
+.interactions .fa-html5:hover,
+.interactions .fa-sailboat:hover {
+  color: tomato;
+  font-size: x-large;
+}
+
+.interactions .fa-js:hover,
+.interactions .fa-fire:hover,
+.interactions .fa-video:hover {
+  color: yellow;
+  font-size: x-large;
+}
+
+.interactions .fa-google:hover,
+.interactions .fa-envira:hover {
+  color: green;
+  font-size: x-large;
+}
+
+.interactions .fa-react:hover,
+.interactions .fa-python:hover,
+.interactions .fa-cloud:hover,
+.interactions .fa-css3-alt:hover {
+  color: skyblue;
+  font-size: x-large;
+}
+
+
+#recent-post-title, #recent-post-summary{
+  font-size: larger;
+  color: #d1d1d1;
+}
+
+#recent-post-title{
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.achive {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.achive1 {
+  text-align: center;
+  font-size: small;
+}
+
+.blog_details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+
+.acive_pic img,
+.blog_image img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+
+  border-radius: 0.6rem;
+}
+
+.blog_image img {
+  width: 12rem;
+}
+
+@media (max-width: 1000px) {
+    form{
+        margin-right: 0rem;
+    }
+    input{
+        width: 20rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+
+  .blog_image img {
+    width: 18rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+
+  .blog_details {
+    margin-top: 0.5rem;
+  }
+  .blog_image img {
+    border: 5px;
+    margin-top: 0.51rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .postheader{
+    display: flex;
+    flex-direction: column;
+  }
+    .searchbar{
+        display: none;
+    }
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+  .acive_pic img {
+    width: 9rem;
+  }
+
+  .post {
+    font-size: 0.9rem;
+  }
+
+  .links {
+    margin-top: 0;
+  }
+
+  .post_details {
+    margin-top: 0.2rem;
+  }
+
+  header {
+    gap: 0.8rem;
+    font-size: .7rem;
+    justify-content: center;
+    font-weight: 600;
+  }
+
+}
+
+.links i:hover {
+  color: rgb(132, 132, 132);
+}
+.fa-github {
+  color: aliceblue;
+}
+.fa-linkedin {
+  color: rgb(0, 110, 255);
+  background-color: aliceblue;
+}
+.fa-youtube {
+  color: tomato;
+}
+.fa-code {
+  color: orange;
+}
+
+
+
+
+
+
+
+
+
+
+ .promo-container,.admin-container  {
+  position: relative;
+  display: inline-block;
+}
+
+.promo, .achivement {
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.promo-popup, .admin-popup {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 10;
+}
+
+.popup-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popup-content li {
+  margin: 5px 0;
+}
+
+.popup-content a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.popup-content button , .popup-content input[type="submit"] {
+  margin-top: 10px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-content button:hover, .popup-content input[type="submit"]:hover {
+  background-color: #d9363e;
+}
+
+.popup-content input[type="text"], .popup-content input[type="password"] {
+  padding: 5px;
+  margin-top: 5px;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+
+.visible {
+  display: block !important;
+}
+
+.admin-container .popup-content{
+  max-width: 10rem;
+}
+
+#password , #name{
+  width: 10rem;
+}
+
+
+
+
