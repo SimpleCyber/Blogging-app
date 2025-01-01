@@ -3,3 +3,4 @@ python-dotenv
 firebase-admin
 Markdown
 gunicorn
+whitenoise
