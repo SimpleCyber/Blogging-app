@@ -24,12 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-lm3i7q5ca#r+yzj08ln6)d3gpme!2zpj^e@=)ytvd12mjp6n6-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    "https://bloggersatyam.onrender.com",
+    "localhost",  # Add this for localhost access
+    "127.0.0.1",  # Add this for 127.0.0.1 access
+    "bloggersatyam.onrender.com",  # Your deployment host
     "bloggersatyam.onrender.com",  # Without the 'https://' part
 ]
+
 # Application definition
 
 INSTALLED_APPS = [
