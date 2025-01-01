@@ -1,101 +1,43 @@
-1.  🌿 django-admin startproject project-name
+### Blogging App
 
-2. open the project-name 
-    🌿  python manage.py makemigrations
-    🌿  python manage.py migrate       
+A Django-based blogging platform integrated with Firebase Firestore for storage. Users can create, edit, delete, and search blog posts with authentication.
 
+---
 
-   <!-- Now we will create our apps in project -->
-   python manage.py startapp home
+#### Features
+- User authentication (login/logout).  
+- Add, edit, and delete blog posts with optional image upload.  
+- Search posts by title, content, or tags.  
+- Display recent posts and tag statistics.
 
-3. Resister [app]
-   After my [app] has been created (home)
-    - home/apps.py 
-    copy function name "HomeConfig"
-    and 
-    paste it in the [project] (usersproject)
+---
 
-    - usersproject/settings.py
-        Installed_apps= [
-            'home.apps.HomeConfig',
-        ]
+#### Setup
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/SimpleCyber/Blogging-app.git
+   cd Blogging-app
+   ```
+2. **Install Dependencies**:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+3. **Configure Firebase**:
+   - Set up Firebase Firestore.
+   - Add credentials in a `.env` file:
+     ```env
+     FIREBASE_PROJECT_ID=your_project_id
+     FIREBASE_PRIVATE_KEY=your_private_key
+     # Add other keys here...
+     ```
+4. **Run the App**:
+   ```bash
+   python manage.py migrate
+   python manage.py runserver
+   ```
 
-     🌿 python manage.py startapp home
+---
 
-4. Allowed_hosts =[]
-   usersproject/settings.py
-    define the allowed hosts = ["http://localhost:8000, "satyam.com"]
-    else it will throw an error
-
-
-5. create an static and templates folder
-   - home
-   - usersproject
-   - static
-   - templates
-
-6. set static dirs in django
-   usersproject/settings.py
-     at the end paste this
-     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR ,"static"),
-    ]
-
-7. set templates 
-    usersproject/settings.py
-    update :  'DIRS': [os.path.join(BASE_DIR ,"templates"),],
-
-
-    <!-- 🌿🌿🌿 PROJECT SETUP COMPLETED 🌿🌿🌿 -->
-    # Start server : py manage.py runserver 
-
-
-<!-- Let's begin with the project -->
-1. Create the html files
-   1. templates/index.html
-   2. templates/login.html
-
-
-
-2. update the userproject/urls.py
-    - from django.urls import path => from django.urls import path , include
-    - urlpatterns = [
-        path('admin/', admin.site.urls),
-        <!-- Start adding the urls routes to the apps -->
-        path('', include('home.urls')),
-    ]
-
-    - [app] home
-      create a new file name home/urls.py : this will handle all of the home files routing
-
-      home/urls.py
-        from django.contrib import admin
-        from django.urls import path , include
-        from home import views
-
-        urlpatterns = [
-            path('', views.index, name="home"),
-            path('login', views.login, name="login"),
-            path('logout', views.logout, name="logout"),
-        ]
-
-    - [app] home/views.py  : now i need to create all of the functions too
-  
-        from django.shortcuts import render, redirect
-        # Create your views here.
-        def index(request):
-            return render(request,'index.html')
-        def login(request):
-            return render(request,'login.html')
-        def logout(request):
-            return render(request,'index.html')
-
-
-
-
-
-
-
-
-
-   
+Contributions are welcome!
