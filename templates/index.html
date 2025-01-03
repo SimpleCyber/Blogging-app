@@ -33,6 +33,7 @@
     <!-- Other Posts -->
     <div class="blogs">
         <h1 class="heading">Recent Posts</h1>
+        {% if posts %}
         {% for post in posts %}
         <div class="blog1" 
              data-title="{{ post.title }}" 
@@ -50,6 +51,9 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+            <p>No posts available :).</p>
+        {% endif %}
     </div>
 
 </main>
