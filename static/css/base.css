@@ -116,14 +116,10 @@ header a:hover {
 
 .promo {
   cursor: pointer;
-  padding: 0.5rem 1rem;
   border-radius: 5px;
   transition: all 0.3s ease;
 }
 
-.promo:hover {
-  background-color: rgba(9, 132, 227, 0.1);
-}
 
 .promo-popup {
   display: none;
@@ -189,6 +185,8 @@ header a:hover {
 
 /* Animation keyframes */
 @keyframes fadeIn {
+
+  
   from {
       opacity: 0;
       transform: translateY(-10px);
@@ -208,6 +206,8 @@ header a:hover {
 
 
 
+
+
 /* Existing CSS remains the same until the media query */
 
 /* Mobile menu button */
@@ -218,6 +218,9 @@ header a:hover {
   border: none;
   background: none;
   z-index: 1001;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .mobile-menu-btn i {
@@ -228,6 +231,11 @@ header a:hover {
 /* Mobile navigation container */
 .mobile-nav {
   display: none;
+}
+@media (min-width : 700px) {
+  .mobile-menu-btn{
+    display: none;
+  }
 }
 
 /* Updated media query */
@@ -246,25 +254,25 @@ header a:hover {
     display: none;
   }
 
-  /* Mobile navigation styles */
   .mobile-nav {
     display: block;
     position: fixed;
     top: 0;
-    right: -280px; /* Start off-screen */
+    left: -280px; /* Start off-screen */
     width: 280px;
     height: 100vh;
     background: var(--header-bg);
     box-shadow: var(--shadow);
     padding: 5rem 1rem 1rem;
-    transition: transform 0.3s ease-in-out;
+    transform: translateX(0); /* Default position */
+    transition: transform 0.3s ease-in-out; /* Smooth slide-in effect */
     z-index: 1000;
-  }
+}
 
-  /* Show mobile navigation when active */
-  .mobile-nav.active {
-    transform: translateX(-280px);
-  }
+.mobile-nav.active {
+    transform: translateX(280px); /* Slide-in to the right */
+}
+
 
   /* Mobile navigation items */
   .mobile-nav > * {
@@ -280,9 +288,17 @@ header a:hover {
     display: block;
     padding: 0.8rem 1rem;
     border-radius: 5px;
+    text-decoration: none;
+    font-size: larger;
+    color: #2d3436;
+    font-weight: bold;  
+  }
+  .mobile-nav a:hover{
+    
+    color: var(--accent-color);
+    background-color: rgba(9, 132, 227, 0.1);
   }
 
-  /* Overlay */
   .overlay {
     display: none;
     position: fixed;
@@ -318,3 +334,10 @@ header a:hover {
   animation: slideIn 0.3s ease forwards;
   animation-delay: calc(var(--item-index) * 0.1s);
 }
+
+
+
+
+
+
+

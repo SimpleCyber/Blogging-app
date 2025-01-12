@@ -204,3 +204,7 @@ def search(request):
             results.append(post)
 
     return render(request,"search_results.html", {"query": query, "posts": results})
+
+
+def base(request):
+    return render(request, "base.html" )
