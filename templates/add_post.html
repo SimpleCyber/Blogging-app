@@ -1,15 +1,7 @@
 {% extends "base.html" %}
-{% load static %}
 {% block css %}
+{% load static %}
 <link rel="stylesheet" href="{% static 'css/addPost.css' %}"/>
-
-<style>
-  @media (max-width: 767px) {
-  .post-form {
-    flex-direction: column;
-  }
-}
-</style>
 {% endblock css %}
 
 {% block main %}

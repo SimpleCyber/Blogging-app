@@ -1,99 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Satyam Blogs</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <title>Satyam Blogs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}" />
 
-    {% block css %}{% endblock css %}
-  </head>
+  {% block css %}{% endblock css %}
+</head>
 
-  <body>
-    <header>
-      <a href="/">
-        <div class="name"><span class="dearcoder" style="font-size: 1.3rem;">DearCoder</span></div></a
-      >
+<body>
+  <header>
+    <a href="/">
+      <div class="name">
+        <span class="dearcoder" style="font-size: 1.3rem">DearCoder</span>
+      </div>
+    </a>
+
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- <div class="mobile-nav">
       <div class="searchbar">
-        <form
-          method="GET"
-          action="/search"
-          style="margin-bottom: 1rem; display: flex; gap: 1rem"
-        >
+        <form method="GET" action="/search">
           <input type="text" name="q" placeholder="Search posts..." required />
           <button class="btn btn-edit" type="submit">
             <i class="fas fa-search"></i>
           </button>
         </form>
       </div>
-      <a href="/allposts"
-        ><div class="Docuemnts">Posts</div></a
-      >
+      
+      <a href="/allposts"><div class="Documents">Posts</div></a>
+      <a href="/add_post">Add</a>
 
-      <div><a href="/add_post">Add</a></div>
-
+      
+      
       <div class="promo-container">
         <div class="promo"><a>Promo</a></div>
         <div class="promo-popup" id="popup">
           <div class="popup-content">
             <div class="links">
               <div class="github">
-                <a href="https://github.com/SimpleCyber"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
+                <a href="https://github.com/SimpleCyber"><i class="fa-brands fa-github"></i></a>
               </div>
               <div class="linkedin">
-                <a href="https://www.linkedin.com/in/dearcoder-satyam"
-                  ><i class="fa-brands fa-linkedin"></i
-                ></a>
+                <a href="https://www.linkedin.com/in/dearcoder-satyam"><i class="fa-brands fa-linkedin"></i></a>
               </div>
               <div class="youtube">
-                <a href="http://www.youtube.com/@factyuniverse"
-                  ><i class="fa-brands fa-youtube"></i
-                ></a>
+                <a href="http://www.youtube.com/@factyuniverse"><i class="fa-brands fa-youtube"></i></a>
               </div>
               <div class="leetcode">
-                <a href="https://leetcode.com/u/pkc5uOVzbM/"
-                  ><i class="fa-solid fa-code"></i
-                ></a>
+                <a href="https://leetcode.com/u/pkc5uOVzbM/"><i class="fa-solid fa-code"></i></a>
               </div>
             </div>
           </div>
         </div>
       </div>
+  
+      <a href="/login">Admin</a>
+      <div class="theme-toggle">
+        <i class="fa-solid fa-sun"></i>
+      </div>
+    </div> -->
 
-      <div class="achivement"><a href="/login">Admin</a></div>
-      
 
-      <i class="fa-solid fa-sun"></i>
-    </header>
+    <div class="searchbar">
+      <form method="GET" action="/search" style="margin-bottom: 1rem; display: flex; gap: 1rem">
+        <input type="text" name="q" placeholder="Search posts..." required />
+        <button class="btn btn-edit" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+    <a href="/allposts">
+      <div class="Docuemnts">Posts</div>
+    </a>
 
-    {% block main %}{% endblock main %} {% block js %}{% endblock js %}
-    <script src="static/js/base.js"></script>
-    <script>
-      const promo = document.querySelector('.promo');
-      const popup = document.getElementById('popup');
-      const closePopup = document.getElementById('close-popup');
+    <div><a href="/add_post">Add</a></div>
 
-      // Toggle the popup visibility on promo click
-      promo.addEventListener('click', () => {
-        if (popup.style.display === 'block') {
-          popup.style.display = 'none';
-        } else {
-          popup.style.display = 'block';
-        }
-      });
-    </script>
-  </body>
+    <div class="promo-container">
+      <div class="promo"><a>Promo</a></div>
+      <div class="promo-popup" id="popup">
+        <div class="popup-content">
+          <div class="links">
+            <div class="github">
+              <a href="https://github.com/SimpleCyber"><i class="fa-brands fa-github"></i></a>
+            </div>
+            <div class="linkedin">
+              <a href="https://www.linkedin.com/in/dearcoder-satyam"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <div class="youtube">
+              <a href="http://www.youtube.com/@factyuniverse"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <div class="leetcode">
+              <a href="https://leetcode.com/u/pkc5uOVzbM/"><i class="fa-solid fa-code"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="achivement"><a href="/login">Admin</a></div>
+
+    <i class="fa-solid fa-sun"></i>
+
+    <!-- Overlay -->
+  </header>
+
+  {% block main %}{% endblock main %} {% block js %}{% endblock js %}
+  <script src="static/js/base.js"></script>
+  <script>
+    const promo = document.querySelector(".promo");
+    const popup = document.getElementById("popup");
+    const closePopup = document.getElementById("close-popup");
+
+    // Toggle the popup visibility on promo click
+    promo.addEventListener("click", () => {
+      if (popup.style.display === "block") {
+        popup.style.display = "none";
+      } else {
+        popup.style.display = "block";
+      }
+    });
+
+
+
+    
+document.addEventListener('DOMContentLoaded', () => {
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const mobileNav = document.querySelector('.mobile-nav');
+  const overlay = document.querySelector('.overlay');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileNav.classList.toggle('active');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+  });
+
+  overlay.addEventListener('click', () => {
+    mobileNav.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+  });
+  </script>
+
+  <script src="{% static 'js/theme-switcher.js' %}"></script>
+  <script src="{% static 'js/base.js' %}"></script>
+</body>
+
 </html>

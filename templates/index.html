@@ -1,4 +1,15 @@
+
+
 {% extends "base.html" %}
+
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+{% endblock css %}
+
+
 {% block main %}
 <main>
     <!-- Most Recent Post -->
@@ -61,6 +72,8 @@
 
 
 {% block js %}
+<script src="{% static 'js/theme-switcher.js' %}"></script>
+
 <script>
     // JavaScript to update the recent post dynamically
     document.querySelectorAll('.blog1').forEach(blog => {
@@ -76,6 +89,8 @@
             document.getElementById('recent-post-summary').textContent = summary;
             document.getElementById('recent-post-details').innerHTML = content;
             document.getElementById('recent-post-image').setAttribute('src', image);
+
+            document.querySelector('.post').scrollIntoView({ behavior: 'smooth' });
         });
     });
 </script>

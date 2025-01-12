@@ -14,4 +14,3 @@ promo.addEventListener('click', () => {
 
 
 
-
