@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/display_post.css' %}">
+
+{% endblock css %}
+
+{% block main %}
+<main>
+    <div class="post">
+        <h1 class="heading">{{ post.title }}</h1>
+        <div class="postheader">
+            <div class="photo">
+                <img src="data:{{ post.content_type }};base64,{{ post.image }}" alt="Post Image">
+            </div>
+            <div class="details">
+                <p><strong>Summary:</strong> {{ post.summary }}</p>
+                <p><strong>Published on:</strong> {{ post.readable_timestamp }}</p>
+                <p><strong>Tags:</strong> {{ post.tags|join:", " }}</p>
+            </div>
+        </div>
+        <div class="content">
+            <h3>Details</h3>
+            <div class="post-content">{{ post.content|safe }}</div>
+        </div>
+    </div>
+</main>
+{% endblock main %}

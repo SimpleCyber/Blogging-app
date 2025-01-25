@@ -132,6 +132,19 @@ main {
     transform: translateY(-2px);
 }
 
+
+.view-delete {
+    background-color: #3fc21e;
+    color: white;
+}
+
+.view-delete:hover {
+    background-color: #7dc02b;
+    transform: translateY(-2px);
+}
+
+
+
 /* Empty state message */
 main > p {
     text-align: center;
@@ -199,5 +212,8 @@ main > p {
     .form-btn {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
+    }
+    .mini-details{
+        display: none;
     }
 }

@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.models import User
 from django.conf import settings
 import os
+from datetime import datetime
+
+
 
 from dotenv import load_dotenv
 import firebase_admin
@@ -206,5 +209,22 @@ def search(request):
     return render(request,"search_results.html", {"query": query, "posts": results})
 
 
-def base(request):
-    return render(request, "base.html" )
+
+
+
+def display_post(request, post_id):
+    # Fetch the specific post from Firestore
+    post_ref = db.collection("posts").document(post_id)
+    post = post_ref.get()
+
+    if not post.exists:
+        return redirect("allposts")  # Redirect to allposts if the post doesn't exist
+
+    post_data = post.to_dict()
+    post_data["id"] = post.id
+
+    # Convert timestamp to readable format if it exists
+    if "timestamp" in post_data:
+        post_data["readable_timestamp"] = datetime.fromtimestamp(post_data["timestamp"]).strftime("%Y-%m-%d %H:%M:%S")
+
+    return render(request, "display_post.html", {"post": post_data})

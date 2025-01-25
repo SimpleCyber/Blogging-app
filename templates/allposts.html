@@ -16,7 +16,7 @@
         <div class="blog1" 
              data-title="{{ post.title }}" 
              data-summary="{{ post.summary }}" 
-             data-content="{{ post.conten|safe }}" 
+             data-content="{{ post.content|safe }}" 
              data-image="data:{{ post.content_type }};base64,{{ post.image }}">
             <div class="blog_image">
                 <a href="#">
@@ -25,12 +25,12 @@
             </div>
             <div class="blog_details">
                 <div class="header">{{ post.title }}</div>
-                <div class="details">{{ post.summary }}</div>
+                <div class="details mini-details">{{ post.summary }}</div>
             </div>
 
             <div class="imp">
                 
-                 
+                {% if request.user.is_superuser %}
                 <a href="{% url 'edit_post' post_id=post.id %}">
                     <button class="btn-edit form-btn">Edit</button>
                 </a>
@@ -38,7 +38,13 @@
 
                 <a href="{% url 'delete_post' post_id=post.id %}">
                     <button class="btn btn-delete form-btn" >Delete</button>
-                 </a>      
+                 </a> 
+                 {% endif %}
+
+                 
+                 <a href="{% url 'display_post' post.id %}">
+                    <button class="btn view-delete form-btn" >View Post</button>
+                </a>
             </div> 
         </div>
         {% endfor %}
